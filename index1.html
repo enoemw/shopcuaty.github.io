@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shop Của Tý </title>
+  <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  margin: 0;
+  background: linear-gradient(to right, #e0f7fa, #e1bee7); 
+}
+    
+
+    h1 {
+      text-align: center;
+      color: #007bff;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .product {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 10px;
+      width: 200px;
+      margin: 15px;
+      text-align: center;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .product img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .product button {
+      background-color: #28a745;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .cart {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 2px solid #333;
+    }
+
+    .cart ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cart-item {
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📱 Shop Của Tý </h1>
+
+  <div class="products">
+    <div class="product">
+      <img src="image/images.jpg" alt="iPhone 15 Plus">
+      <h3>iPhone 15 Plus</h3>
+      <p>Giá: 26.000.000đ</p>
+      <button onclick="addToCart('iPhone 15 Plus', 26000000)">Thêm vào giỏ</button>
+    </div>
+
+    <div class="product">
+      <img src="image/ip 12 prm.webp" alt="ip 12 prm">
+      <h3>iPhone 12 prm</h3>
+      <p>Giá: 8.990.000đ</p>
+      <button onclick="addToCart('ip 12 prm', 8990000)">Thêm vào giỏ</button>
+    </div>
+
+    <div class="product">
+      <img src="image/nitro-5-2021-an515-57.webp" alt="acer nitro 5">
+      <h3>acer nitro 5</h3>
+      <p>Giá:25.000.000</p>
+      <button onclick="addToCart('acer nitro5', 25000000)">Thêm vào giỏ</button>
+    </div>
+  </div>
+
+  <div class="cart">
+    <h2>🛒 Giỏ Hàng</h2>
+    <ul id="cart-items"></ul>
+    <p><strong>Tổng cộng:</strong> <span id="total">0</span> đ</p>
+  </div>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartList = document.getElementById("cart-items");
+      const totalDisplay = document.getElementById("total");
+      cartList.innerHTML = "";
+      let total = 0;
+
+      cart.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.name} - ${item.price.toLocaleString()} đ`;
+        li.className = "cart-item";
+        cartList.appendChild(li);
+        total += item.price;
+      });
+
+      totalDisplay.textContent = total.toLocaleString();
+    }
+  </script>
+
+</body>
+</html>
